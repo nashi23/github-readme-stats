@@ -1,19 +1,13 @@
+---
 themes:
   - changed-files:
-      - any-glob-to-any-file:
-          - themes/index.js
-
+      - any-glob-to-any-file: [themes/index.js]
 doc-translation:
   - changed-files:
-      - any-glob-to-any-file:
-          - docs/*
-
+      - any-glob-to-any-file: [docs/*]
 card-i18n:
   - changed-files:
-      - any-glob-to-any-file:
-          - src/translations.js
-          - src/common/I18n.js
-
+      - any-glob-to-any-file: [src/translations.js, src/common/I18n.js]
 documentation:
   - changed-files:
       - any-glob-to-any-file:
@@ -21,13 +15,9 @@ documentation:
           - CONTRIBUTING.md
           - CODE_OF_CONDUCT.md
           - SECURITY.md
-
 dependencies:
   - changed-files:
-      - any-glob-to-any-file:
-          - package.json
-          - package-lock.json
-
+      - any-glob-to-any-file: [package.json, package-lock.json]
 lang-card:
   - changed-files:
       - any-glob-to-any-file:
@@ -37,7 +27,6 @@ lang-card:
           - tests/fetchTopLanguages.test.js
           - tests/renderTopLanguagesCard.test.js
           - tests/top-langs.test.js
-
 repo-card:
   - changed-files:
       - any-glob-to-any-file:
@@ -47,7 +36,6 @@ repo-card:
           - tests/fetchRepo.test.js
           - tests/renderRepoCard.test.js
           - tests/pin.test.js
-
 stats-card:
   - changed-files:
       - any-glob-to-any-file:
@@ -57,7 +45,6 @@ stats-card:
           - tests/fetchStats.test.js
           - tests/renderStatsCard.test.js
           - tests/api.test.js
-
 wakatime-card:
   - changed-files:
       - any-glob-to-any-file:
@@ -67,7 +54,6 @@ wakatime-card:
           - tests/fetchWakatime.test.js
           - tests/renderWakatimeCard.test.js
           - tests/wakatime.test.js
-
 gist-card:
   - changed-files:
       - any-glob-to-any-file:
@@ -77,19 +63,12 @@ gist-card:
           - tests/fetchGist.test.js
           - tests/renderGistCard.test.js
           - tests/gist.test.js
-
 ranks:
   - changed-files:
-      - any-glob-to-any-file:
-          - src/calculateRank.js
-
+      - any-glob-to-any-file: [src/calculateRank.js]
 ci:
   - changed-files:
-      - any-glob-to-any-file:
-          - .github/workflows/*
-          - scripts/*
-
+      - any-glob-to-any-file: [.github/workflows/*, scripts/*]
 infrastructure:
   - changed-files:
-      - any-glob-to-any-file:
-          - .eslintrc.json
+      - any-glob-to-any-file: [.eslintrc.json]

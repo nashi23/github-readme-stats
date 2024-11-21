@@ -1,3 +1,4 @@
+---
 name: Update supported languages
 on:
   schedule:
@@ -10,8 +11,7 @@ on:
     #        │ │  │   │ │
     #        │ │  │   │ │
     #        * *  *   * *
-    - cron: "0 0 */30 * *"
-
+    - cron: 0 0 */30 * *
 permissions:
   actions: read
   checks: read
@@ -25,7 +25,6 @@ permissions:
   repository-projects: read
   security-events: read
   statuses: read
-
 jobs:
   updateLanguages:
     if: github.repository == 'anuraghazra/github-readme-stats'
@@ -34,34 +33,26 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
       - name: Setup Node
-        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4.0.0
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65  # v4.0.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-
       - name: Install dependencies
         run: npm ci
         env:
           CI: true
-
       - name: Run update-languages-json.js script
         run: npm run generate-langs-json
-
       - name: Create Pull Request if upstream language file is changed
-        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5.0.2
+        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38  # v5.0.2
         with:
-          commit-message: "refactor: update languages JSON"
-          branch: "update_langs/patch"
+          commit-message: 'refactor: update languages JSON'
+          branch: update_langs/patch
           delete-branch: true
           title: Update languages JSON
-          body:
-            "The
-            [update-langs](https://github.com/anuraghazra/github-readme-stats/actions/workflows/update-langs.yaml)
-            action found new/updated languages in the [upstream languages JSON
-            file](https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml)."
-          labels: "ci, lang-card"
+          body: The [update-langs](https://github.com/anuraghazra/github-readme-stats/actions/workflows/update-langs.yaml)
+            action found new/updated languages in the [upstream languages JSON file](https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml).
+          labels: ci, lang-card

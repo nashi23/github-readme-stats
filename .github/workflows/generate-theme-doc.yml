@@ -1,11 +1,9 @@
+---
 name: Generate Theme Readme
 on:
   push:
-    branches:
-      - master
-    paths:
-      - "themes/index.js"
-
+    branches: [master]
+    paths: [themes/index.js]
 permissions:
   actions: read
   checks: read
@@ -19,7 +17,6 @@ permissions:
   repository-projects: read
   security-events: read
   statuses: read
-
 jobs:
   generateThemeDoc:
     runs-on: ubuntu-latest
@@ -27,12 +24,10 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
       - name: Setup Node
-        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4.0.0
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65  # v4.0.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -40,16 +35,14 @@ jobs:
       # Fix the unsafe repo error which was introduced by the CVE-2022-24765 git patches.
       - name: Fix unsafe repo error
         run: git config --global --add safe.directory ${{ github.workspace }}
-
       - name: npm install, generate readme
         run: |
           npm ci
           npm run theme-readme-gen
         env:
           CI: true
-
       - name: Run Script
-        uses: skx/github-action-tester@e29768ff4ff67be9d1fdbccd8836ab83233bebb1 # v0.10.0
+        uses: skx/github-action-tester@e29768ff4ff67be9d1fdbccd8836ab83233bebb1  # v0.10.0
         with:
           script: ./scripts/push-theme-readme.sh
         env:

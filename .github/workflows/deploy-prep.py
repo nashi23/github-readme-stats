@@ -1,4 +1,3 @@
-import os
 
 file = open('./vercel.json', 'r')
 str = file.read()

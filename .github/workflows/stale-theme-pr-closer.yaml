@@ -1,3 +1,4 @@
+---
 name: Close stale theme pull requests that have the 'invalid' label.
 on:
   schedule:
@@ -10,8 +11,7 @@ on:
     #        │ │  │  │ │
     #        │ │  │  │ │
     #        * *  *  * *
-    - cron: "0 0 */7 * *"
-
+    - cron: 0 0 */7 * *
 permissions:
   actions: read
   checks: read
@@ -25,7 +25,6 @@ permissions:
   repository-projects: read
   security-events: read
   statuses: read
-
 jobs:
   closeOldThemePrs:
     if: github.repository == 'anuraghazra/github-readme-stats'
@@ -34,20 +33,16 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
       - name: Setup Node
-        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4.0.0
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65  # v4.0.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-
-      - uses: bahmutov/npm-install@2509f13e8485d88340a789a3f7ca11aaac47c9fc # v1.8.36
+      - uses: bahmutov/npm-install@2509f13e8485d88340a789a3f7ca11aaac47c9fc  # v1.8.36
         with:
           useLockFile: false
-
       - run: npm run close-stale-theme-prs
         env:
           STALE_DAYS: 20
